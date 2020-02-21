@@ -1,0 +1,70 @@
+Goals:
+//prompt user to enter month (1-12) & year
+//display calendar for that month and year
+//use methods:
+   - printMonthCalendar
+   - printMonthHeader
+   - printMonthBody
+   - getMonthName
+   - getStartDay
+   - getNumDaysInMonth
+   - isLeapYear
+
+Assumptions:
+- All years displayed/chosen will be in Gregorian Calendar ** Lacks historical accuracy before October 1582 (when Julian calendar was replaced by Gregorian in Rome) **
+- years will be at least 0 ce and follow astronomical year numbering (rather than traditional BC numbering)
+- leap years begin only in those divisible by 4 except century years that aren't divisible by 400
+
+User Experience:
+- print use of program:: Gregorian Calendar/historical significance in breve
+- ask for month in numbers
+- ask for years with valid range
+- see output Calendar
+- quit automatically afterwards, reprompt app to show again
+
+Programming Design:
+- Main Method:
+   - tell user what program does
+   - explain gregorian limitiations
+   - ask user what year to print, save as variable input
+   - ask user what month to print, save as variable input
+   - print calendar which cascade-calls everything else and prints the calendar
+- isLeapYear:
+   - grab the date from user input
+   - check if divisible by 400
+      - if yes, leap years
+   - else check if divisible by 100
+      - if yes, not leap year
+   - else check if divisible by 4
+      - if yes, leap year (not divisible by 100/400 or those would have run)
+   - else:
+      - save leap to boolean true
+= getMonthName:
+   - take input number through case loop
+   - select monthname and save it to the variable
+- get DaysInMonth:
+   - take monthname and loop through case loop
+      - bunch the cases together for 30s and 31s with only the instructions after all the grouped cases
+   - case February:
+      - if isLeapYear set to true,
+         - days: 29
+      - if isLeapYear set to false,
+         - days: 28
+= get StartDay:
+   -
+   - modify the startDay algorithm according to stack exchange
+- printMonthBody:
+   - grab startday
+   -  to set spaces inset from the initial position
+      - print set number of spaces
+   - grab DaysInMonth
+   - use the number to populate the rest of the days
+- print Month printMonthHeader
+   - use a standard take in the month name and set it as the title variable
+   - print a line with title
+   - print empty line and filler line
+   - print  weekdays at the top of the header
+- print Calendar
+   - call the monthheader
+   - call the  month body
+-
