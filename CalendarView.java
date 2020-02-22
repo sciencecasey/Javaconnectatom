@@ -278,11 +278,6 @@ public static CalendarView(){
             System.out.println("  30  31")
          }
       }// end of loop setting last calendar line
-
-
-
-
-
    }
 
    public static int getNumDays(int month, int year){
@@ -318,7 +313,26 @@ public static CalendarView(){
    }
 
    public static boolean isLeapYear(int year){
-      
+      this.year = year; //save instance variables
+      boolean isLeapy;
+
+      if (year % 400 == 0){
+         //years divisible by 400 are leap years
+         isLeapy = True;
+      }
+      else if (year % 100 == 0){
+         //all other years divisible by 100 not leap years
+         isLeapy = False;
+      }
+      else if (year % 4 ==0){
+         //all other years divisible by 4 are leap years
+         isLeapy == True;
+      }
+      else{
+         isLeapy == False;
+      }
+      //return the boolean
+      return isLeapy;
    }
 
    /** getStartDay

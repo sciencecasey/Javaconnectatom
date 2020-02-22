@@ -25,7 +25,7 @@ User Experience:
 Programming Design:
 - Main Method:
    - tell user what program does
-   - explain gregorian limitiations
+   - explain Gregorian limitations
    - ask user what year to print, save as variable input
    - ask user what month to print, save as variable input
    - print calendar which cascade-calls everything else and prints the calendar
@@ -41,9 +41,9 @@ Programming Design:
       - save leap to boolean true
 = getMonthName:
    - take input number through case loop
-   - select monthname and save it to the variable
+   - select monthname and save it to the return variable
 - get DaysInMonth:
-   - take monthname and loop through case loop
+   - take monthnum and loop through case loop
       - bunch the cases together for 30s and 31s with only the instructions after all the grouped cases
    - case February:
       - if isLeapYear set to true,
@@ -51,8 +51,7 @@ Programming Design:
       - if isLeapYear set to false,
          - days: 28
 = get StartDay:
-   -
-   - modify the startDay algorithm according to stack exchange
+   - use given startDay
 - printMonthBody:
    - grab startday
    -  to set spaces inset from the initial position
