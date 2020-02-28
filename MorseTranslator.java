@@ -1,4 +1,4 @@
-package practicingJava;
+package morseCode;
 
 import java.util.Scanner;
 
