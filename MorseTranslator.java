@@ -26,9 +26,7 @@ public class MorseTranslator {
          System.out.println("enter M for Morse Code and E for English");
          startLang = scan.nextLine().trim().toUpperCase();
          System.out.println("Enter the sentence you'd like to translate, "
-               + "without puncutuation. \nIf translating from Morse Code, "
-               + "Please use a period ('.') as a 'dot' and a hyphen ('-') "
-               + "as a 'dash'");
+               + "without puncutuation.");
          input = scan.nextLine().trim().toUpperCase();
       }//end getting input
       scan.close();

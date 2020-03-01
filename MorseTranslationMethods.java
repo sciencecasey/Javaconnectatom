@@ -1,7 +1,7 @@
 package morseCode;
 
 public class MorseTranslationMethods {
- //separate methods
+   //separate methods
    public void parseTranslation(String input, String startLang) {
       if (startLang.equals("E")) {
          englishToMorse(input);
@@ -10,20 +10,25 @@ public class MorseTranslationMethods {
          morseToEnglish(input);
       }
    }
-   
    public void englishToMorse(String input) {
-      String output = new String();
+      StringBuffer translation = new StringBuffer(30);
+      //loop through characters one by one
       for (int i = 0; i<input.length(); i++) {
          char unitCharacter = input.charAt(i);//separate the input by character
          //send the input to returnMatch method & append the match to output
-         output+=returnMatch(unitCharacter)+" ";//separate each by a space
+         translation = translation.append(returnMatch
+               ("&&", unitCharacter));
+         if (i == input.length()) { //when at end of input
+            System.out.println(input + " : " + translation); 
+         }
       }
-      System.out.println(""+input+" : "+output);
+      
    }
    
    public void morseToEnglish(String userInput) {
+      StringBuffer translation = new StringBuffer();
       //group letters of input
-    //if null character used, Morse to English
+      //if null character used, Morse to English
       //add a space to end of string so that loop functions for last unit
       userInput = userInput+' ';
       //loop to separate Morse units by spaces
@@ -33,7 +38,9 @@ public class MorseTranslationMethods {
          int end = userInput.indexOf(' ', begin);
          String morseUnit = 
                userInput.substring(begin,end);
-         String translation = translation+returnMatch(morseUnit);
+         //send with 'default' input for charIn
+         translation = translation.append
+               (returnMatch(morseUnit, '#'));
          begin = end+1;
          if (begin == userInput.length()) {
             //reached end of translation unit
@@ -49,46 +56,36 @@ public class MorseTranslationMethods {
               "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", 
               ".-.", "...", "-", "..-", "...-", ".--", "-.-", "-.--", "--..", 
               "|", ".----", "..---", "..---", ""};
-        char [] english = "ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789".toCharArray();
-        
-        if (characterIn == '#') {//Morse to English
+        //char [] english = "ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789".toCharArray();
+        char [] english = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+              'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
+              'X', 'Y', 'Z', ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', 
+              '9'};
+        String match = new String();
+        nest: { if (characterIn == '#') {//Morse to English
          //search substring in array
            for (int tempInd=0; tempInd<37; tempInd++) {
               if (stringIn.equals(morse[tempInd])) {
-                 String match = String.valueOf(english[tempInd]);
-                 return match;//return english value
-                 }
+                 match = String.valueOf(english[tempInd]);
+                 break nest;
+              }
            }
         }
         else {//english to Morse
-           for (int tempInd: english) {
-              if (characterIn == english[tempInd]) {
-                 String match = morse[tempInd];
-                 return match; //return morse value of same index
+           //convert Character to String
+           String tempChar = new String();
+           tempChar = String.valueOf(characterIn);
+           for (int tempInd=0; tempInd<37; tempInd++) {
+              //if (characterIn == english[tempInd])
+              if (tempChar.equals(String.valueOf(english[tempInd])))
+              {
+                 match = morse[tempInd];
+                 break nest;
               }
-           }
-           
-        }
+           }}
+        }//end nest
+        
+        return match; //return morse value of same index
      }
-   
-   private boolean stringIn(String string) {
-      // TODO Auto-generated method stub
-      return false;
-   }
-
-   public void returnMatch(String passMe) {
-      //Method Overload so that character in above is optional
-      //if this method is called, the input value is Morse (not parsed by 
-      //character
-      char noCharacter = '#';//an unused character in Translator
-      returnMatch(passMe, noCharacter);
-   }
-   public void returnMatch(char passMe) {
-      //Method Overload so that String in method is optional
-      //creates a "default" String with only characters not within either array
-      //if this method is used, the input type is English
-      String noString = new String("&&");
-      returnMatch(noString, passMe);
-   }
 }
    
